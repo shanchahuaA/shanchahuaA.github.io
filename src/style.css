@@ -1,0 +1,101 @@
+/* ── 编号图纸 · 设计基调 ─────────────────────────────
+   冷纸白图纸面、墨线文字、唯一强调色钢印青。
+   间距只用 8 的倍数；数字一律 tabular-nums。
+   无入场动画、无卡片阴影：层级全靠 1px 图纸线。 */
+
+:root {
+  /* 色板 */
+  --paper: #f7f8f9;
+  --paper-raised: #ffffff;
+  --ink: #22282e;
+  --ink-body: #3d4650;
+  --ink-dim: #6b7280;
+  --line: #c9d0d8;
+  --line-strong: #9aa5b0;
+  --accent: #2e5e6e;
+
+  /* 字体：中文系统栈，西文在前；等宽用于编号与图内标注 */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC',
+    sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', Consolas, Menlo, 'Sarasa Mono SC',
+    monospace;
+
+  /* 底部安全留白，联系区尾部不至于贴边 */
+  --gutter: 48px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 文档正文栏：桌面左偏置，右侧留呼吸区 */
+.page {
+  max-width: 880px;
+  margin-inline: auto;
+  padding: 0 24px 96px;
+}
+
+@media (min-width: 1200px) {
+  .page {
+    margin-inline: 0;
+    margin-left: max(24px, calc((100vw - 1080px) / 2));
+  }
+}
+
+/* ── 区块节奏 ── */
+
+section,
+.hero + section {
+  margin-top: 160px;
+}
+
+h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin: 8px 0 32px;
+  letter-spacing: 0.01em;
+}
+
+.section-no {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper-raised);
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
