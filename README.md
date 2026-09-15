@@ -1,6 +1,6 @@
 # shanchahuaA.github.io
 
-我的个人作品集网站，发布在 **https://shanchahuaA.github.io**。
+我的个人作品集网站，发布在 https://shanchahuaA.github.io。
 
 ## 这是什么
 
