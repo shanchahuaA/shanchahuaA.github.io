@@ -45,7 +45,7 @@ const githubLabel = computed(() => profile.github.replace('https://', ''))
 
 .row {
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 96px minmax(0, 1fr);
   border-bottom: 1px solid var(--line);
 }
 
@@ -65,6 +65,8 @@ dd {
   margin: 0;
   padding: 14px 16px;
   font-variant-numeric: tabular-nums;
+  /* 长 URL / 邮箱是一整个不可断词，窄屏下必须允许从中间断开 */
+  overflow-wrap: anywhere;
 }
 
 .pending {
@@ -84,7 +86,7 @@ dd {
 
 @media (max-width: 640px) {
   .row {
-    grid-template-columns: 76px 1fr;
+    grid-template-columns: 76px minmax(0, 1fr);
   }
 }
 </style>
