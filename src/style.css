@@ -1,7 +1,7 @@
 /* ── 编号图纸 · 设计基调 ─────────────────────────────
    冷纸白图纸面、墨线文字、唯一强调色钢印青。
-   间距只用 8 的倍数；数字一律 tabular-nums。
-   无入场动画、无卡片阴影：层级全靠 1px 图纸线。 */
+   数字一律 tabular-nums；层级靠 1px 图纸线划分，不用卡片阴影。
+   全站唯一的动效是首屏档案号的一次性计数（见 SiteHero.vue）。 */
 
 :root {
   /* 色板 */
@@ -20,9 +20,6 @@
     sans-serif;
   --font-mono: ui-monospace, 'Cascadia Mono', Consolas, Menlo, 'Sarasa Mono SC',
     monospace;
-
-  /* 底部安全留白，联系区尾部不至于贴边 */
-  --gutter: 48px;
 }
 
 * {
@@ -45,7 +42,7 @@ body {
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.9;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -66,14 +63,15 @@ body {
 
 /* ── 区块节奏 ── */
 
-section,
-.hero + section {
+section {
   margin-top: 160px;
+  scroll-margin-top: 32px; /* 锚点跳转后不要贴着视口顶 */
 }
 
 h2 {
   font-size: 1.9rem;
   font-weight: 600;
+  line-height: 1.35;
   margin: 8px 0 32px;
   letter-spacing: 0.01em;
 }
@@ -93,6 +91,11 @@ h2 {
 
 a {
   color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 :focus-visible {

@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { profile } from '../data/profile'
+
+/** 展示用的 GitHub 地址：去掉 https:// 前缀，短一点更好读 */
+const githubLabel = computed(() => profile.github.replace('https://', ''))
 </script>
 
 <template>
@@ -10,7 +14,7 @@ import { profile } from '../data/profile'
     <dl class="contact-list">
       <div class="row">
         <dt>GitHub</dt>
-        <dd><a :href="profile.github" target="_blank" rel="noopener">{{ profile.github.replace('https://', '') }}</a></dd>
+        <dd><a :href="profile.github" target="_blank" rel="noopener">{{ githubLabel }}</a></dd>
       </div>
       <div class="row" v-if="profile.email">
         <dt>邮箱</dt>
@@ -22,7 +26,7 @@ import { profile } from '../data/profile'
       </div>
     </dl>
     <footer class="colophon">
-      <p>本站由 Vue 3 + Vite 构建，GitHub Actions 自动部署。手写于 2026 年。</p>
+      <p>本站由 Vue 3 + Vite 构建，GitHub Actions 自动部署。</p>
     </footer>
   </section>
 </template>
@@ -30,7 +34,6 @@ import { profile } from '../data/profile'
 <style scoped>
 .lead {
   margin: 0 0 32px;
-  line-height: 1.9;
   color: var(--ink-body);
 }
 
@@ -62,16 +65,6 @@ dd {
   margin: 0;
   padding: 14px 16px;
   font-variant-numeric: tabular-nums;
-}
-
-dd a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-dd a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 .pending {

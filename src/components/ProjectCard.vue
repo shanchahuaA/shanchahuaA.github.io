@@ -2,7 +2,7 @@
 import type { Project } from '../data/projects'
 import ProjectFigure from './ProjectFigure.vue'
 
-defineProps<{ project: Project; index: number }>()
+defineProps<{ project: Project }>()
 </script>
 
 <template>
@@ -70,7 +70,6 @@ h3 {
 
 .desc {
   margin: 0 0 20px;
-  line-height: 1.9;
   color: var(--ink-body);
 }
 
@@ -113,11 +112,6 @@ h3 {
   color: var(--accent);
   text-decoration: none;
   font-size: 0.95rem;
-}
-
-.repo a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 .repo-pending {

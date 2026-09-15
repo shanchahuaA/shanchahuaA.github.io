@@ -1,3 +1,8 @@
+<!--
+  项目卡片的图位：有截图就显示截图，没有就用内联 SVG 线框图占位。
+  三张图各对应一个项目（stream / defense / mod），由 project.figure 选择；
+  截图拍好后在 projects.ts 里给 image 填路径，这里会自动改显示 <img>，不用改组件。
+-->
 <script setup lang="ts">
 import type { FigureKey } from '../data/projects'
 
@@ -11,9 +16,10 @@ const captions: Record<FigureKey, string> = {
 </script>
 
 <template>
-  <figure class="figure" v-if="props.image === null">
-    <!-- Fig.1 数据通路：浏览器 → Servlet/业务/DAO 三层 → 数据库 → 爬虫 -->
-    <svg v-if="props.figure === 'stream'" viewBox="0 0 480 360" role="img"
+  <figure class="figure">
+    <!-- 有截图就显示截图；没有就用内联 SVG 线框图占位（对应 projects.ts 里的 image 字段） -->
+    <img v-if="props.image !== null" :src="props.image" :alt="captions[props.figure]" />
+    <svg v-else-if="props.figure === 'stream'" viewBox="0 0 480 360" role="img"
       aria-label="GameStream 架构线框图：浏览器经过 Servlet、业务层、数据访问层到数据库，另有 Python 爬虫从外部取数" class="drawing">
       <g class="stroke">
         <!-- 浏览器窗口 -->
@@ -149,12 +155,6 @@ const captions: Record<FigureKey, string> = {
       </g>
     </svg>
 
-    <figcaption class="caption">{{ captions[props.figure] }}</figcaption>
-  </figure>
-
-  <!-- 截图阶段：image 一旦有值，占位图整体停用，换成 <img> -->
-  <figure class="figure" v-else>
-    <img :src="props.image" :alt="captions[props.figure]" />
     <figcaption class="caption">{{ captions[props.figure] }}</figcaption>
   </figure>
 </template>

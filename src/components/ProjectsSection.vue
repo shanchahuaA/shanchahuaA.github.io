@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { projects, projectsMeta } from '../data/projects'
+import { projects, projectsNote } from '../data/projects'
 import ProjectCard from './ProjectCard.vue'
 </script>
 
@@ -7,9 +7,9 @@ import ProjectCard from './ProjectCard.vue'
   <section class="projects" id="projects" aria-labelledby="projects-heading">
     <p class="section-no">01 · 项目</p>
     <h2 id="projects-heading">项目</h2>
-    <p class="note">{{ projectsMeta.note }}</p>
+    <p class="note">{{ projectsNote }}</p>
     <div class="list">
-      <ProjectCard v-for="(p, i) in projects" :key="p.id" :project="p" :index="i" />
+      <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
     </div>
   </section>
 </template>

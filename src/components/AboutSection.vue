@@ -14,7 +14,6 @@ import { profile } from '../data/profile'
 p {
   margin: 0 0 1.4em;
   max-width: 40em;
-  line-height: 1.9;
   color: var(--ink-body);
 }
 
