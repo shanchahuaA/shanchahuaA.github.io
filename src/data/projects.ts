@@ -23,40 +23,49 @@ export interface Project {
   image: string | null
 }
 
-/** 「项目」区块开头的一句说明。仓库上线后改这里，不动组件。 */
+/** 「项目」区块开头的一句说明。改这里，不动组件。 */
 export const projectsNote =
-  '两个系统的源码仓库正在整理中，会陆续公开；卡片目前指向我的 GitHub 主页。'
+  '前两个项目的源码都已在 GitHub 上公开——每个仓库里都有 README、建库脚本，以及一份如实写着未完成部分的已知问题清单。'
 
 export const projects: Project[] = [
   {
-    id: 'gamestream',
-    name: 'GameStream 游戏优惠平台',
-    oneLiner: 'Java Web + Python 爬虫的游戏优惠聚合平台',
+    id: 'stream',
+    name: 'Stream 游戏信息平台',
+    oneLiner: 'Java Web + Python 微服务的游戏折扣聚合平台',
     description:
-      'Java Servlet + MyBatis + MySQL 的 Web 应用，聚合 Steam 特惠、热销榜和 Epic 限时免费游戏。后端用 ProcessBuilder 拉起本地 Python（FastAPI）爬虫服务，经 HTTP 接口取数、fastjson 解析后写入数据库；另有一个独立的 Python AI 助手服务，用自然语言帮用户找游戏。',
+      'Java Servlet + MyBatis + MySQL 的 Web 应用，聚合 Steam 特惠、热销榜和 Epic 限时免费游戏。后端用 ProcessBuilder 拉起本地 Python（FastAPI）爬虫服务，经 HTTP 接口取数、fastjson 解析后写入数据库；另有一个独立的 Python AI 导购助手服务，用自然语言提问、由大模型按意图调用工具（Steam 官方接口查价、读本应用自己的榜单推荐好价、搜游戏风评）。',
     features: [
       'Steam 特惠与热销榜浏览',
       'Epic 限时免费游戏专区',
       '游戏列表筛选与排序',
       '会员收藏管理',
-      'AI 游戏助手',
+      'AI 导购助手',
       '登录注册与头像上传',
       '管理员用户与游戏管理',
       '爬虫控制台与周一自检同步',
     ],
-    stack: ['Java 8', 'Servlet', 'MyBatis', 'MySQL', 'fastjson', 'Python', 'FastAPI'],
-    // ← 仓库 stream-game-platform 公开后，替换为该仓库地址
-    repoUrl: 'https://github.com/shanchahuaA',
+    stack: [
+      'Java 8',
+      'Servlet',
+      'MyBatis',
+      'PageHelper',
+      'MySQL 8',
+      'fastjson',
+      'Python',
+      'FastAPI',
+      'BeautifulSoup',
+    ],
+    repoUrl: 'https://github.com/shanchahuaA/stream-game-platform',
     figure: 'stream',
-    // ← 截图拍好后填入路径，如 '/screenshots/gamestream.png'，占位图自动停用
+    // ← 截图拍好后填入路径，如 '/screenshots/stream.png'，占位图自动停用
     image: null,
   },
   {
     id: 'defense',
-    name: '校园答辩管理系统',
-    oneLiner: '高校院系答辩全流程成绩管理系统',
+    name: '毕业答辩管理系统',
+    oneLiner: '面向高校本科毕业答辩的全流程成绩管理系统',
     description:
-      'Spring Boot 3 + Vue 3 + Element Plus 的前后端分离系统，管理院系答辩从分组、小组评分、大组终评到成绩汇总的全流程。JWT + Spring Security 按角色鉴权（超级管理员 / 院系管理员 / 教师），组长身份由答辩分组数据决定；综合成绩按指导、评阅、答辩三项加权合成，组长端可生成 AI 评语。文档批量导出功能仍在开发中。',
+      'Spring Boot 3 + Vue 3 + Element Plus 的前后端分离系统，管理院系答辩从分组、小组评分、大组终评到成绩汇总的全流程。JWT + Spring Security 按角色鉴权（超级管理员 / 院系管理员 / 教师），组长身份由答辩分组数据决定；综合成绩按指导 30% / 评阅 30% / 答辩 40% 加权合成，组长端可用大模型（通义千问）生成小组评语。文档导出页的按钮目前只弹提示、不会真的下载文件，这条已如实写进 README 的已知问题一节。',
     features: [
       'JWT 登录与角色权限',
       '院系、教师、学生管理',
@@ -66,9 +75,18 @@ export const projects: Project[] = [
       '组长 AI 评语生成',
       '答辩年份切换',
     ],
-    stack: ['Spring Boot 3', 'Spring Security', 'JWT', 'JPA + MySQL', 'Vue 3', 'Element Plus', 'Pinia'],
-    // ← 仓库 defense-system 公开后，替换为该仓库地址
-    repoUrl: 'https://github.com/shanchahuaA',
+    stack: [
+      'Java 17',
+      'Spring Boot 3',
+      'Spring Security',
+      'JWT',
+      'JPA + MySQL',
+      'Vue 3',
+      'Element Plus',
+      'Pinia',
+      'poi-tl',
+    ],
+    repoUrl: 'https://github.com/shanchahuaA/defense-system',
     figure: 'defense',
     // ← 截图拍好后填入路径
     image: null,
